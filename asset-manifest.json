@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/jha-prateek/etherpunk-21/static/css/main.734897ac.chunk.css",
+    "main.js": "/jha-prateek/etherpunk-21/static/js/main.17863f3c.chunk.js",
+    "main.js.map": "/jha-prateek/etherpunk-21/static/js/main.17863f3c.chunk.js.map",
+    "runtime-main.js": "/jha-prateek/etherpunk-21/static/js/runtime-main.9445ec02.js",
+    "runtime-main.js.map": "/jha-prateek/etherpunk-21/static/js/runtime-main.9445ec02.js.map",
+    "static/css/2.37c27f5c.chunk.css": "/jha-prateek/etherpunk-21/static/css/2.37c27f5c.chunk.css",
+    "static/js/2.46d164c4.chunk.js": "/jha-prateek/etherpunk-21/static/js/2.46d164c4.chunk.js",
+    "static/js/2.46d164c4.chunk.js.map": "/jha-prateek/etherpunk-21/static/js/2.46d164c4.chunk.js.map",
+    "index.html": "/jha-prateek/etherpunk-21/index.html",
+    "precache-manifest.de5f663650f1f939a243e03dd334eae3.js": "/jha-prateek/etherpunk-21/precache-manifest.de5f663650f1f939a243e03dd334eae3.js",
+    "service-worker.js": "/jha-prateek/etherpunk-21/service-worker.js",
+    "static/css/2.37c27f5c.chunk.css.map": "/jha-prateek/etherpunk-21/static/css/2.37c27f5c.chunk.css.map",
+    "static/css/main.734897ac.chunk.css.map": "/jha-prateek/etherpunk-21/static/css/main.734897ac.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9445ec02.js",
+    "static/css/2.37c27f5c.chunk.css",
+    "static/js/2.46d164c4.chunk.js",
+    "static/css/main.734897ac.chunk.css",
+    "static/js/main.17863f3c.chunk.js"
+  ]
+}
