@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/etherpunk-21/precache-manifest.408fd257897847d8c8091b600b125461.js"
+  "/etherpunk-21/precache-manifest.b435d00a2feb27d26fc0907b32844741.js"
 );
 
 self.addEventListener('message', (event) => {
