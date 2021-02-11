@@ -15,11 +15,11 @@ export default class Navbar extends Component {
             <nav
                 className="navbar navbar-expand-lg fixed-top navbar-light shadow-lg rounded bg-light"
             >
-                {/* <a className="navbar-brand navbar-nav" href="/">
+                <Link className="navbar-brand navbar-nav" href="/">
                     <h2>
-                        Home
+                        DLAND
                     </h2>
-                </a> */}
+                </Link>
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -36,10 +36,10 @@ export default class Navbar extends Component {
                     <ul className="navbar-nav mr-auto"></ul>
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item active" data-toggle="collapse" data-target=".navbar-collapse.show">
-                            <a className="nav-link" href="/"><h3>Dashboard</h3></a>
+                            <Link className="nav-link" to="/"><h3>Dashboard</h3></Link>
                         </li>
                         <li className="nav-item active" data-toggle="collapse" data-target=".navbar-collapse.show">
-                            <a className="nav-link" href="/property"><h3>Rent Out</h3></a>
+                            <Link className="nav-link" to="/property"><h3>Rent Out</h3></Link>
                         </li>
                     </ul>
                 </div>
