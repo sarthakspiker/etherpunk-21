@@ -1,0 +1,5 @@
+{
+    "ipfsEndpoint" : "ipfs.infura.io",
+    "ipfsPort": 5001,
+    "ipfsSecurityProtocol": "https"
+}

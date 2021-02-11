@@ -1,6 +1,6 @@
 pragma solidity >=0.4.21 <=0.7.4;
 
-    contract RealEstateRental {
+    contract PropertyRental {
     
       // Property to be rented out on Property
       struct Property {

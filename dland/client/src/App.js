@@ -4,9 +4,27 @@ import RealEstateRentalContract from "./contracts/RealEstateRental.json";
 import getWeb3 from "./getWeb3";
 
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from "react-router-dom";
+
+import Dashboard from './Dashboard';
+import Register from './RegisterProperty'
+import Navbar from "./Navbar";
 
 class App extends Component {
-  state = { storageValue: 0, web3: null, accounts: null, contract: null };
+  state = {
+    storageValue: 0,
+    web3: null,
+    accounts: null,
+    contract: null,
+    transactionHash: 'No transactions yet'
+  };
 
   componentDidMount = async () => {
     try {
@@ -67,26 +85,35 @@ class App extends Component {
   };
 
   render() {
-    if (!this.state.web3) {
-      return <div>Loading Web3, accounts, and contract...</div>;
-    }
+    // if (!this.state.web3) {
+    //   return <div>Loading Web3, accounts, and contract...</div>;
+    // }
+    // return (
+    //   <div className="App">
+    //     <h1>Good to Go!</h1>
+    //     <p>Your Truffle Box is installed and ready.</p>
+    //     <h2>Smart Contract Example</h2>
+    //     <p>
+    //       If your contracts compiled and migrated successfully, below will show
+    //       a stored value of 5 (by default).
+    //     </p>
+    //     <p>
+    //       Try changing the value stored on <strong>line 40</strong> of App.js.
+    //     </p>
+    //     <div>The stored value is: {this.state.storageValue}</div>
+    //     <button onClick={this.runExample}>Send 5 GWEI</button>
+    //     <h3>Transaction Hash is: {this.state.transactionHash}</h3>
+    //   </div>
+    // );
     return (
       <div className="App">
-        <h1>Good to Go!</h1>
-        <p>Your Truffle Box is installed and ready.</p>
-        <h2>Smart Contract Example</h2>
-        <p>
-          If your contracts compiled and migrated successfully, below will show
-          a stored value of 5 (by default).
-        </p>
-        <p>
-          Try changing the value stored on <strong>line 40</strong> of App.js.
-        </p>
-        <div>The stored value is: {this.state.storageValue}</div>
-        <button onClick={this.runExample}>Send 5 GWEI</button>
-        <div>Transaction Hash is: {this.state.transactionHash}</div>
+        <Router>
+          <Navbar />
+          <Route path="/" exact component={Dashboard} />
+          <Route path="/property" exact component={Register} />
+        </Router>
       </div>
-    );
+    )
   }
 }
 
