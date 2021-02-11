@@ -1,17 +1,18 @@
-pragma solidity >=0.4.21 <0.7.0;
+pragma solidity ^0.5.7;
 
-contract RealEstateRental {
-    // Property to be rented out on Airbnb
+contract PropertyRental {
+    // Property to be rented out on Property
     struct Property {
         string name;
-        string description;
-        bool isActive; // is property active
-        uint256 price; // per day price in wei (1 ether = 10^18 wei)
+        uint256 area; // area in sq. feet
+        uint256 furnishing; //0 Non 1 Semi 2 Fully
+        string availableFrom;
+        string propertyAddress;
+        string contact;
+        uint256 rent; // per day rent in wei (1 ether = 10^18 wei)
         address owner; // Owner of the property
-        // Is the property booked on a particular day,
-        // For the sake of simplicity, we assign 0 to Jan 1, 1 to Jan 2 and so on
-        // so isBooked[31] will denote whether the property is booked for Feb 1
-        bool[] isBooked;
+        bool isBooked; // is property booked
+        bool isActive; // is property active
     }
 
     uint256 public propertyId;
@@ -24,7 +25,7 @@ contract RealEstateRental {
         uint256 propertyId;
         uint256 checkInDate;
         uint256 checkoutDate;
-        address user;
+        address tenant;
     }
 
     uint256 public bookingId;
@@ -39,24 +40,29 @@ contract RealEstateRental {
     event NewBooking(uint256 indexed propertyId, uint256 indexed bookingId);
 
     /**
-     * @dev Put up an Airbnb property in the market
-     * @param name Name of the property
-     * @param description Short description of your property
-     * @param price Price per day in wei (1 ether = 10^18 wei)
+     * @dev Put up an Property property in the market
      */
     function rentOutproperty(
         string memory name,
-        string memory description,
-        uint256 price
+        uint256 area,
+        uint256 furnishing,
+        string memory availableFrom,
+        string memory propertyAddress,
+        string memory contact,
+        uint256 rent
     ) public {
         Property memory property =
             Property(
                 name,
-                description,
-                true, /* isActive */
-                price,
+                area,
+                furnishing,
+                availableFrom,
+                propertyAddress,
+                contact,
+                rent,
                 msg.sender, /* owner */
-                new bool[](365)
+                false,
+                true
             );
 
         // Persist `property` object to the "permanent" storage
@@ -67,10 +73,7 @@ contract RealEstateRental {
     }
 
     /**
-     * @dev Make an Airbnb booking
-     * @param _propertyId id of the property to rent out
-     * @param checkInDate Check-in date
-     * @param checkoutDate Check-out date
+     * @dev Make an Property booking
      */
     function rentProperty(
         uint256 _propertyId,
@@ -85,20 +88,14 @@ contract RealEstateRental {
             property.isActive == true,
             "property with this ID is not active"
         );
-
-        // Assert that property is available for the dates
-        for (uint256 i = checkInDate; i < checkoutDate; i++) {
-            if (property.isBooked[i] == true) {
-                // if property is booked on a day, revert the transaction
-                revert("property is not available for the selected dates");
-            }
-        }
-
-        // Check the customer has sent an amount equal to (pricePerDay * numberOfDays)
+        // Assert that property not booked
         require(
-            msg.value == property.price * (checkoutDate - checkInDate),
-            "Sent insufficient funds"
+            property.isBooked == false,
+            "property with this ID is not available"
         );
+
+        // Check the customer has sent an amount equal to (rentPerDay * numberOfDays)
+        require(msg.value == property.rent, "Sent insufficient funds");
 
         // send funds to the owner of the property
         _sendFunds(property.owner, msg.value);
@@ -123,10 +120,9 @@ contract RealEstateRental {
         // Retrieve `property` object from the storage
         Property storage property = properties[_propertyId];
 
-        // Mark the property booked on the requested dates
-        for (uint256 i = checkInDate; i < checkoutDate; i++) {
-            property.isBooked[i] = true;
-        }
+        // Mark the property booked
+        property.isBooked = true;
+        property.isActive = false;
 
         // Emit an event to notify clients
         emit NewBooking(_propertyId, bookingId++);
@@ -140,7 +136,6 @@ contract RealEstateRental {
 
     /**
      * @dev Take down the property from the market
-     * @param _propertyId Property ID
      */
     function markPropertyAsInactive(uint256 _propertyId) public {
         require(
