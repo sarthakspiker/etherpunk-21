@@ -18,19 +18,19 @@ class App extends Component {
 
       // Get the contract instance.
       const networkId = await web3.eth.net.getId();
-      // const deployedNetwork = SimpleStorageContract.networks[networkId];
-      // const instance = new web3.eth.Contract(
-      //   SimpleStorageContract.abi,
-      //   deployedNetwork && deployedNetwork.address,
-      // );
-
-      const deployedNetwork = RealEstateRentalContract.networks[networkId];
+      const deployedNetwork = SimpleStorageContract.networks[networkId];
       const instance = new web3.eth.Contract(
-        RealEstateRentalContract.abi,
+        SimpleStorageContract.abi,
         deployedNetwork && deployedNetwork.address,
       );
 
-      console.log(instance);
+      // const deployedNetwork = RealEstateRentalContract.networks[networkId];
+      // const instance = new web3.eth.Contract(
+      //   RealEstateRentalContract.abi,
+      //   deployedNetwork && deployedNetwork.address,
+      // );
+
+      // console.log(instance);
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
@@ -53,10 +53,14 @@ class App extends Component {
     const { accounts, contract } = this.state;
 
     // Stores a given value, 5 by default.
-    await contract.methods.set(5).send({ from: accounts[0] });
+    await contract.methods.set(5).send({ from: accounts[0] })
+      .on('transactionHash', (hash) => {
+        this.setState({ transactionHash: hash });
+      });
 
     // Get the value from the contract to prove it worked.
     const response = await contract.methods.get().call();
+
 
     // Update state with the result.
     this.setState({ storageValue: response });
@@ -79,6 +83,8 @@ class App extends Component {
           Try changing the value stored on <strong>line 40</strong> of App.js.
         </p>
         <div>The stored value is: {this.state.storageValue}</div>
+        <button onClick={this.runExample}>Send 5 GWEI</button>
+        <div>Transaction Hash is: {this.state.transactionHash}</div>
       </div>
     );
   }
