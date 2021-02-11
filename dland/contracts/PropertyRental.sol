@@ -5,11 +5,11 @@ pragma solidity >=0.4.21 <=0.7.4;
       // Property to be rented out on Property
       struct Property {
         //string name;
-        string description;
-        uint256 area; // area in sq. feet
-        uint256 furnishing; //0 Non 1 Semi 2 Fully
-        uint256 availableFrom;
-        uint256 flatType; // 2 2BHK; 3 3BHK
+        string propertyDescription; // Address;Contact
+        uint16 area; // area in sq. feet
+        uint8 furnishing; //0 Non 1 Semi 2 Fully
+        uint128 availableFrom;
+        uint8 flatType; // 2 2BHK; 3 3BHK
         //string propertyAddress;
         //string contact;
         uint256 rent; // per day month in wei (1 ether = 10^18 wei)
@@ -27,8 +27,8 @@ pragma solidity >=0.4.21 <=0.7.4;
       // Details of a particular booking
       struct Booking {
         uint256 propertyId;
-        uint256 checkInDate;
-        uint256 checkoutDate;
+        uint128 checkInDate;
+        uint128 checkoutDate;
         address tenant;
       }
     
@@ -51,8 +51,8 @@ pragma solidity >=0.4.21 <=0.7.4;
       /**
        * @dev Put up an Property property in the market
        */
-      function rentOutproperty( string memory description, uint256 area, uint256 furnishing, uint256 availableFrom, uint256 flatType, uint256 rent, uint256 secutityDeposit) public {
-        Property memory property = Property( description, area, furnishing, availableFrom, flatType, rent, secutityDeposit, msg.sender /* owner */, false,true);
+      function rentOutproperty( string memory propertyDescription, uint16 area, uint8 furnishing, uint8 availableFrom, uint8 flatType, uint256 rent, uint256 secutityDeposit) public {
+        Property memory property = Property( propertyDescription, area, furnishing, availableFrom, flatType, rent, secutityDeposit, msg.sender /* owner */, false,true);
     
         // Persist `property` object to the "permanent" storage
         properties[propertyId] = property;
@@ -64,7 +64,7 @@ pragma solidity >=0.4.21 <=0.7.4;
       /**
        * @dev Make an Property booking
        */
-      function rentProperty(uint256 _propertyId, uint256 checkInDate, uint256 checkoutDate) public payable {
+      function rentProperty(uint256 _propertyId, uint128 checkInDate, uint128 checkoutDate) public payable {
         // Retrieve `property` object from the storage
         Property storage property = properties[_propertyId];
     
@@ -92,7 +92,7 @@ pragma solidity >=0.4.21 <=0.7.4;
         _createBooking(_propertyId, checkInDate, checkoutDate);
       }
     
-      function _createBooking(uint256 _propertyId, uint256 checkInDate, uint256 checkoutDate) internal {
+      function _createBooking(uint256 _propertyId, uint128 checkInDate, uint128 checkoutDate) internal {
         // Create a new booking object
         bookings[bookingId] = Booking(_propertyId, checkInDate, checkoutDate, msg.sender);
     
