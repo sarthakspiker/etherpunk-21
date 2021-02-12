@@ -1,26 +1,26 @@
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.4.21 <=0.7.4;
+pragma experimental ABIEncoderV2;
 
     contract PropertyRental {
-    
+
       // Property to be rented out on Property
       struct Property {
-        //string name;
+        uint256 propId;
         string propertyDescription; // Address;Contact
         uint16 area; // area in sq. feet
         uint8 furnishing; //0 Non 1 Semi 2 Fully
-        uint128 availableFrom;
+        uint128 availableFrom; // timestamp
         uint8 flatType; // 2 2BHK; 3 3BHK
-        //string propertyAddress;
-        //string contact;
         uint256 rent; // per day month in wei (1 ether = 10^18 wei)
         uint256 securityDeposit;
         address owner; // Owner of the property
         bool isBooked; // is property booked
         bool isActive; // is property active
+        string imagesHash; //hash of images from IPFS ; seperated
       }
     
       uint256 public propertyId;
-    
       // mapping of propertyId to Property object
       mapping(uint256 => Property) public properties;
     
@@ -51,8 +51,8 @@ pragma solidity >=0.4.21 <=0.7.4;
       /**
        * @dev Put up an Property property in the market
        */
-      function rentOutproperty( string memory propertyDescription, uint16 area, uint8 furnishing, uint8 availableFrom, uint8 flatType, uint256 rent, uint256 secutityDeposit) public {
-        Property memory property = Property( propertyDescription, area, furnishing, availableFrom, flatType, rent, secutityDeposit, msg.sender /* owner */, false,true);
+      function rentOutproperty( string memory propertyDescription, uint16 area, uint8 furnishing, uint128 availableFrom, uint8 flatType, uint256 rent, uint256 secutityDeposit, string memory imageHash) public {
+        Property memory property = Property( propertyId, propertyDescription, area, furnishing, availableFrom, flatType, rent, secutityDeposit, msg.sender /* owner */, false,true,imageHash);
     
         // Persist `property` object to the "permanent" storage
         properties[propertyId] = property;
@@ -123,4 +123,52 @@ pragma solidity >=0.4.21 <=0.7.4;
         );
         properties[_propertyId].isActive = false;
       }
-    }   
+
+      //Get total number of proprties
+      function getTotalProperties() public view returns (uint256){
+        return propertyId;
+      }
+
+      //Get 8 available properties from current location
+      function getProperies(uint256 loc) public view returns (Property[] memory,uint8){
+      Property[] memory propertyBundle = new Property[](8);
+      uint8 j = 0;
+      for (uint256 i = loc; j < 8 && i < propertyId;i++) {
+        if(properties[i].isActive){
+        Property storage prop = properties[i];
+        propertyBundle[j++] = prop;
+        }
+      }
+      return (propertyBundle,j);
+      }
+
+      //Get listed properties by owner
+      function getMyProperies(uint256 loc) public view returns (Property[] memory, Booking[] memory, uint8){
+      Property[] memory propertyBundle = new Property[](2);
+      Booking[] memory bookingBundle = new Booking[](2);
+      uint8 j = 0;
+      for (uint256 i = loc; j < 2 && i < propertyId;i++) {
+        if(properties[i].owner == msg.sender){
+        Property storage prop = properties[i];
+        propertyBundle[j] = prop;
+        bookingBundle[j++] = bookings[prop.propId];
+        }
+      }
+      return (propertyBundle, bookingBundle, j);
+      }
+
+      //Get Booked properties by tenant
+      function getMyBookings(uint256 loc) public view returns (Property[] memory, Booking[] memory, uint8){
+      Property[] memory propertyBundle = new Property[](2);
+      Booking[] memory bookingBundle = new Booking[](2);
+      uint8 j = 0;
+      for (uint256 i = loc; j < 2 && i < propertyId;i++) {
+        if(bookings[i].tenant == msg.sender){
+        Booking storage booked = bookings[i];
+        bookingBundle[j] = booked;
+        propertyBundle[j] = properties[booked.propertyId];
+        }
+      }
+      return (propertyBundle, bookingBundle, j);
+      }
+  }   
