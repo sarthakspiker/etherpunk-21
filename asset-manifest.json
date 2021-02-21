@@ -1,24 +1,25 @@
 {
   "files": {
-    "main.css": "/etherpunk-21/static/css/main.2bac8dab.chunk.css",
-    "main.js": "/etherpunk-21/static/js/main.550a775a.chunk.js",
-    "main.js.map": "/etherpunk-21/static/js/main.550a775a.chunk.js.map",
+    "main.css": "/etherpunk-21/static/css/main.24c0d89f.chunk.css",
+    "main.js": "/etherpunk-21/static/js/main.7586d8ea.chunk.js",
+    "main.js.map": "/etherpunk-21/static/js/main.7586d8ea.chunk.js.map",
     "runtime-main.js": "/etherpunk-21/static/js/runtime-main.ce635d88.js",
     "runtime-main.js.map": "/etherpunk-21/static/js/runtime-main.ce635d88.js.map",
     "static/css/2.37c27f5c.chunk.css": "/etherpunk-21/static/css/2.37c27f5c.chunk.css",
-    "static/js/2.fcdd2d61.chunk.js": "/etherpunk-21/static/js/2.fcdd2d61.chunk.js",
-    "static/js/2.fcdd2d61.chunk.js.map": "/etherpunk-21/static/js/2.fcdd2d61.chunk.js.map",
+    "static/js/2.4bd10d6e.chunk.js": "/etherpunk-21/static/js/2.4bd10d6e.chunk.js",
+    "static/js/2.4bd10d6e.chunk.js.map": "/etherpunk-21/static/js/2.4bd10d6e.chunk.js.map",
     "index.html": "/etherpunk-21/index.html",
-    "precache-manifest.b435d00a2feb27d26fc0907b32844741.js": "/etherpunk-21/precache-manifest.b435d00a2feb27d26fc0907b32844741.js",
+    "precache-manifest.25aee7e53b335544c72b87a814379c8d.js": "/etherpunk-21/precache-manifest.25aee7e53b335544c72b87a814379c8d.js",
     "service-worker.js": "/etherpunk-21/service-worker.js",
     "static/css/2.37c27f5c.chunk.css.map": "/etherpunk-21/static/css/2.37c27f5c.chunk.css.map",
-    "static/css/main.2bac8dab.chunk.css.map": "/etherpunk-21/static/css/main.2bac8dab.chunk.css.map"
+    "static/css/main.24c0d89f.chunk.css.map": "/etherpunk-21/static/css/main.24c0d89f.chunk.css.map",
+    "static/media/dstays2.png": "/etherpunk-21/static/media/dstays2.46c9e478.png"
   },
   "entrypoints": [
     "static/js/runtime-main.ce635d88.js",
     "static/css/2.37c27f5c.chunk.css",
-    "static/js/2.fcdd2d61.chunk.js",
-    "static/css/main.2bac8dab.chunk.css",
-    "static/js/main.550a775a.chunk.js"
+    "static/js/2.4bd10d6e.chunk.js",
+    "static/css/main.24c0d89f.chunk.css",
+    "static/js/main.7586d8ea.chunk.js"
   ]
 }
