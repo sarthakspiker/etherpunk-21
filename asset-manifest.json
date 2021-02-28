@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/etherpunk-21/static/css/main.24c0d89f.chunk.css",
-    "main.js": "/etherpunk-21/static/js/main.7586d8ea.chunk.js",
-    "main.js.map": "/etherpunk-21/static/js/main.7586d8ea.chunk.js.map",
+    "main.js": "/etherpunk-21/static/js/main.ad8277c9.chunk.js",
+    "main.js.map": "/etherpunk-21/static/js/main.ad8277c9.chunk.js.map",
     "runtime-main.js": "/etherpunk-21/static/js/runtime-main.ce635d88.js",
     "runtime-main.js.map": "/etherpunk-21/static/js/runtime-main.ce635d88.js.map",
     "static/css/2.37c27f5c.chunk.css": "/etherpunk-21/static/css/2.37c27f5c.chunk.css",
-    "static/js/2.4bd10d6e.chunk.js": "/etherpunk-21/static/js/2.4bd10d6e.chunk.js",
-    "static/js/2.4bd10d6e.chunk.js.map": "/etherpunk-21/static/js/2.4bd10d6e.chunk.js.map",
+    "static/js/2.e9136ecb.chunk.js": "/etherpunk-21/static/js/2.e9136ecb.chunk.js",
+    "static/js/2.e9136ecb.chunk.js.map": "/etherpunk-21/static/js/2.e9136ecb.chunk.js.map",
     "index.html": "/etherpunk-21/index.html",
-    "precache-manifest.25aee7e53b335544c72b87a814379c8d.js": "/etherpunk-21/precache-manifest.25aee7e53b335544c72b87a814379c8d.js",
+    "precache-manifest.c70d1365e630f0df30f56e3e8af73593.js": "/etherpunk-21/precache-manifest.c70d1365e630f0df30f56e3e8af73593.js",
     "service-worker.js": "/etherpunk-21/service-worker.js",
     "static/css/2.37c27f5c.chunk.css.map": "/etherpunk-21/static/css/2.37c27f5c.chunk.css.map",
     "static/css/main.24c0d89f.chunk.css.map": "/etherpunk-21/static/css/main.24c0d89f.chunk.css.map",
@@ -18,8 +18,8 @@
   "entrypoints": [
     "static/js/runtime-main.ce635d88.js",
     "static/css/2.37c27f5c.chunk.css",
-    "static/js/2.4bd10d6e.chunk.js",
+    "static/js/2.e9136ecb.chunk.js",
     "static/css/main.24c0d89f.chunk.css",
-    "static/js/main.7586d8ea.chunk.js"
+    "static/js/main.ad8277c9.chunk.js"
   ]
 }
